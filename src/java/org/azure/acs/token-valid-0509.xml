@@ -1,0 +1,28 @@
+<t:RequestSecurityTokenResponse Context="http://localhost:8080/MyACSHelloWorld/"
+                                xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust">
+    <t:Lifetime>
+        <wsu:Created xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+            2014-05-09T07:09:55.191Z
+        </wsu:Created>
+        <wsu:Expires xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+            2014-05-09T17:09:55.191Z
+        </wsu:Expires>
+    </t:Lifetime>
+    <wsp:AppliesTo xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <EndpointReference xmlns="http://www.w3.org/2005/08/addressing">
+            <Address>http://azureservices/TenantSite</Address>
+        </EndpointReference>
+    </wsp:AppliesTo>
+    <t:RequestedSecurityToken>
+        <wsse:BinarySecurityToken wsu:Id="_49793ea8-68f1-4a00-abc8-172bcd66b1c3-F641E35D3734F34EF484B74A288BB0AA"
+                                  ValueType="urn:ietf:params:oauth:token-type:jwt"
+                                  EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"
+                                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                                  xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKU1V6STFOaUlzSW5nMWRDSTZJbkJUVTBZMlkwaG5YMkpPVTNBdFVEWjRUVEZWYTA1b00wVkpUU0o5LmV5SmhkV1FpT2lKb2RIUndPaTh2WVhwMWNtVnpaWEoyYVdObGN5OVVaVzVoYm5SVGFYUmxJaXdpYVhOeklqb2lhSFIwY0hNNkx5OWhlR0ZoWTNNdVlXTmpaWE56WTI5dWRISnZiQzUzYVc1a2IzZHpMbTVsZEM4aUxDSnVZbVlpT2pFek9UazJNVGt6T1RVc0ltVjRjQ0k2TVRNNU9UWTFOVE01TlN3aWFIUjBjRG92TDNOamFHVnRZWE11YldsamNtOXpiMlowTG1OdmJTOTNjeTh5TURBNEx6QTJMMmxrWlc1MGFYUjVMMk5zWVdsdGN5OWhkWFJvWlc1MGFXTmhkR2x2Ym1sdWMzUmhiblFpT2lJeU1ERTBMVEExTFRBNVZEQTNPakE1T2pVNUxqTXlNRm9pTENKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwzZHpMekl3TURndk1EWXZhV1JsYm5ScGRIa3ZZMnhoYVcxekwyRjFkR2hsYm5ScFkyRjBhVzl1YldWMGFHOWtJam9pYUhSMGNEb3ZMM05qYUdWdFlYTXViV2xqY205emIyWjBMbU52YlM5M2N5OHlNREE0THpBMkwybGtaVzUwYVhSNUwyRjFkR2hsYm5ScFkyRjBhVzl1YldWMGFHOWtMM2RwYm1SdmQzTWlMQ0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTkzY3k4eU1EQTFMekExTDJsa1pXNTBhWFI1TDJOc1lXbHRjeTl1WVcxbElqb2lRVmhCTFVOTVQxVkVYRngzWVhCMWMyVnlJaXdpYUhSMGNEb3ZMM05qYUdWdFlYTXVlRzFzYzI5aGNDNXZjbWN2ZDNNdk1qQXdOUzh3TlM5cFpHVnVkR2wwZVM5amJHRnBiWE12ZFhCdUlqb2lkMkZ3ZFhObGNrQmhlR0V0WTJ4dmRXUXVZMjl0SWl3aWRYQnVJam9pUVZoQkxVTk1UMVZFWEZ4M1lYQjFjMlZ5SWl3aWFXUmxiblJwZEhsd2NtOTJhV1JsY2lJNkltaDBkSEE2THk5M1lYQmhaR1p6TG1GNFlTMWpiRzkxWkM1amIyMHZZV1JtY3k5elpYSjJhV05sY3k5MGNuVnpkQ0o5LmJid2pRRnZTV3dQMTJRbWloMVRVSDlETVRoWFV5aDEwNG9Bbk9zMzJ0amp5ZTZpUUVQbGFJTkJsTVNGLWJTVWdnYXcwSVNGaEN3MVBxcjlYWHhndkhieWY2UXdERmFrU3kzVVNXQ2dxWE94WjQwNEx6bVZlb3l2RkVqMDFPY21ncU9CM2s4V0FKMGwyWTdXeERabUhhcG5LSEwtZGVkU0dzUnhESUFvLUpSMS1yeDZTMU5RRDV6MnBfVC11YThZN2h0cWpTZjR0c3ROOF9EQk9GV0xuaGRIcnJkUTRCSmM5eGQzVXNtamVoUHU0R3BqSHoxRWdDSEczaVoyRGVNcVppamVjaENSMHY4Tmh1Nkdsal9KVUF5bDVTdElUNm5sQTM4ZGEzazNFWkgzUFBHVjFxOVRZRGl2b0pyQ1V4M3ZkWG1lVDhyb0dfUVo1elNaa2tId3R6dw==
+        </wsse:BinarySecurityToken>
+    </t:RequestedSecurityToken>
+    <t:TokenType>urn:ietf:params:oauth:token-type:jwt</t:TokenType>
+    <t:RequestType>http://schemas.xmlsoap.org/ws/2005/02/trust/Issue</t:RequestType>
+    <t:KeyType>http://schemas.xmlsoap.org/ws/2005/05/identity/NoProofKey</t:KeyType>
+</t:RequestSecurityTokenResponse>

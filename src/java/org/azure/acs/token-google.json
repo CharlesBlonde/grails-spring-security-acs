@@ -1,0 +1,10 @@
+{
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": "Charles Blonde",
+    "aud": "http://localhost:8080/",
+    "iss": "https://axaacs.accesscontrol.windows.net/",
+    "nbf": 1399190360,
+    "exp": 1399196360,
+    "nameid": "https://www.google.com/accounts/o8/id?id=AItOawkcnUYDxpNVReZU3wPjRgySt9bUBt_gw0w",
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress": "cblonde@xebia.fr",
+    "identityprovider": "Google"
+}
