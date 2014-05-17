@@ -8,7 +8,7 @@ import org.springframework.security.web.util.AnyRequestMatcher
 
 class AcsSecurityGrailsPlugin {
     // the plugin version
-    def version = "0.3-SNAPSHOT"
+    def version = "0.4-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
@@ -79,6 +79,8 @@ Microsoft ACS Authentication
             coreUserDetailsService = ref('userDetailsService')
             autoCreate = conf.acs.autoCreate
             defaultAuthorities = conf.acs.defaultAuthorities
+            verifySignature = conf.acs.verifySignature
+            pubKey = conf.acs.pubKey
             //userDetailsService = ref('userDetailsService')
         }
         /*

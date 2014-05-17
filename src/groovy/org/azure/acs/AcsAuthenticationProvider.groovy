@@ -13,6 +13,10 @@ import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.security.jwt.crypto.sign.RsaKeyHelper
+import org.springframework.security.jwt.crypto.sign.RsaVerifier
+
+import java.security.interfaces.RSAPublicKey
 
 /**
  * User: charles
@@ -33,6 +37,9 @@ class AcsAuthenticationProvider implements AuthenticationProvider, InitializingB
     String authorityClassName
     String authorityJoinClassName
 
+    boolean verifySignature
+    String pubKey
+
     Class AppUser
     Class Authority
     Class UserAuthority
@@ -40,6 +47,16 @@ class AcsAuthenticationProvider implements AuthenticationProvider, InitializingB
     @Override
     Authentication authenticate(Authentication authentication) throws AuthenticationException {
         log.info("Authenticate $authentication");
+        AcsAuthenticationToken acsToken = (AcsAuthenticationToken) authentication
+
+        if (verifySignature) {
+            log.fine("Signature verification is enabled")
+
+            def keyPair = RsaKeyHelper.parseKeyPair(pubKey)
+            //will throw an exception if Signature is not valid
+            acsToken.jwtToken.verifySignature(new RsaVerifier((RSAPublicKey) keyPair.public))
+        }
+
         //TODO check signature !!!
 
         authentication.authenticated = true

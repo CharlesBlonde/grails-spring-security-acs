@@ -7,7 +7,7 @@ Add support to [Microsoft ACS](http://en.wikipedia.org/wiki/Access_Control_Servi
 This plugin is not production ready at all at this time:
 
 * No documentation
-* No signature verification !!
+* Poor signature checking
 * No central releases
 
 ## Requirements
