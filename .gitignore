@@ -5,3 +5,8 @@ target/
 *.zip
 *.sha1
 *.iml
+
+grails-app/i18n/*
+web-app/css/*
+web-app/images/*
+web-app/js/*
