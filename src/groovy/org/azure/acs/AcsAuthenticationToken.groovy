@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.jwt.Jwt
 import grails.util.Holders
+import org.springframework.security.jwt.JwtHelper
 
 /**
  * User: charles
@@ -15,7 +16,7 @@ import grails.util.Holders
  * Author : cblonde@xebia.fr
  */
 class AcsAuthenticationToken extends AbstractAuthenticationToken {
-    Jwt jwtToken
+    String token
 
     Collection<GrantedAuthority> authorities
     Object principal
@@ -24,21 +25,13 @@ class AcsAuthenticationToken extends AbstractAuthenticationToken {
         super([] as Collection<GrantedAuthority>)
     }
 
-    public AcsAuthenticationToken(Collection<? extends GrantedAuthority> authorities, Jwt jwtToken) throws AuthenticationException {
-        super(authorities);
-        this.jwtToken = jwtToken;
-        if (getPrincipal() == null) {
-            throw new UsernameNotFoundException(jwtToken.claims);
-        }
-        //TODO add verify signature
-    }
-
     @Override
     Object getCredentials() {
-        return jwtToken.encoded
+        return getJwtToken().encoded
     }
 
     String getUserName() {
+        Jwt jwtToken = getJwtToken()
         def usernames = Holders.config.grails.plugin.springsecurity.acs.claim.usernames
         def claims = new JsonSlurper().parseText(jwtToken.claims)
 
@@ -49,6 +42,7 @@ class AcsAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     String getFullName() {
+        Jwt jwtToken = getJwtToken()
         def names = Holders.config.grails.plugin.springsecurity.acs.claim.names
         def jsonToken = new JsonSlurper().parseText(jwtToken.claims)
 
@@ -58,10 +52,13 @@ class AcsAuthenticationToken extends AbstractAuthenticationToken {
         return getUserName()
     }
 
+    Jwt getJwtToken(){
+        JwtHelper.decode(token)
+    }
+
     @Override
     Object getPrincipal() {
         return principal
-        //return new JsonSlurper().parseText(jwtToken.claims)."http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"
     }
 
 

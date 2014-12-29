@@ -72,8 +72,7 @@ class AcsFilter extends AbstractAuthenticationProcessingFilter {
                 Document doc = dBuilder.parse(new StringBufferInputStream(wresult));
                 String base64Token = doc.getElementsByTagName("wsse:BinarySecurityToken").item(0).getTextContent();
                 String token = StringUtils.newStringUtf8(Base64.decodeBase64(base64Token));
-                Jwt jwtToken = JwtHelper.decode(token);
-                Authentication securityToken = new AcsAuthenticationToken(jwtToken: jwtToken)
+                Authentication securityToken = new AcsAuthenticationToken(token: token)
                 Authentication auth = getAuthenticationManager().authenticate(securityToken)
                 if (auth.authenticated) {
                     log.info "Successful authentication"

@@ -25,7 +25,7 @@ class AcsRequestFilter extends GenericFilterBean {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request
             String authorizationHeader = httpServletRequest.getHeader("Authorization")
             if (!Strings.isNullOrEmpty(authorizationHeader)) {
-                def acsAuthenticationToken = new AcsAuthenticationToken(jwtToken: JwtHelper.decode(authorizationHeader))
+                def acsAuthenticationToken = new AcsAuthenticationToken(token: authorizationHeader)
                 SecurityContextHolder.context.setAuthentication(acsAuthenticationToken)
             }
         }
