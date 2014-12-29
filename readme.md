@@ -19,7 +19,7 @@ This plugin is not production ready at all at this time:
 
 ```
 repositories{
-	mavenRepo 'http://repository-cblonde.forge.cloudbees.com/snapshot'	
+	mavenRepo 'https://s3-eu-west-1.amazonaws.com/grails-acs-security/release/'
 }
 ...
 plugins {
