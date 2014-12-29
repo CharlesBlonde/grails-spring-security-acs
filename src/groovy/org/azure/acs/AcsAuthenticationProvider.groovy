@@ -1,17 +1,12 @@
 package org.azure.acs
 
-import grails.plugin.springsecurity.userdetails.GormUserDetailsService
 import grails.plugin.springsecurity.userdetails.GrailsUserDetailsService
 import groovy.util.logging.Log
-import groovy.util.logging.Log4j
-import org.apache.log4j.Logger
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
-import org.springframework.security.core.authority.GrantedAuthorityImpl
-import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.jwt.crypto.sign.RsaKeyHelper
 import org.springframework.security.jwt.crypto.sign.RsaVerifier

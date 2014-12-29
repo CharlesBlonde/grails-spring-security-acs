@@ -43,11 +43,12 @@ grails.project.dependency.resolution = {
         compile 'org.springframework.security:spring-security-jwt:1.0.1.RELEASE'
         compile 'com.google.guava:guava:17.0'
         compile 'commons-codec:commons-codec:1.9'
+        compile 'net.sf.ehcache:ehcache:2.9.0'
     }
 
 
     plugins {
-        compile ':spring-security-core:2.0-RC2'
+        compile ':spring-security-core:2.0-RC4'
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false

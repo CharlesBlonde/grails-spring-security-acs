@@ -1,14 +1,12 @@
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.SecurityFilterPosition
-import org.azure.acs.AcsAuthenticationFailureHandler
 import org.azure.acs.AcsAuthenticationProvider
 import org.azure.acs.AcsFilter
-import org.azure.acs.AcsUserDetailsService
-import org.springframework.security.web.util.AnyRequestMatcher
+import org.azure.acs.AcsRequestFilter
 
 class AcsSecurityGrailsPlugin {
     // the plugin version
-    def version = "0.4-SNAPSHOT"
+    def version = "0.5-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
@@ -68,8 +66,8 @@ Microsoft ACS Authentication
         }
 
         SpringSecurityUtils.registerProvider 'acsAuthenticationProvider'
-        SpringSecurityUtils.registerFilter 'acsFilter',
-                SecurityFilterPosition.OPENID_FILTER
+        SpringSecurityUtils.registerFilter 'acsRequestFilter', SecurityFilterPosition.OPENID_FILTER.order - 1
+        SpringSecurityUtils.registerFilter 'acsFilter', SecurityFilterPosition.OPENID_FILTER
 
         acsAuthenticationProvider(AcsAuthenticationProvider) {
             appUserClassName = conf.userLookup.userDomainClassName
@@ -83,23 +81,10 @@ Microsoft ACS Authentication
             pubKey = conf.acs.pubKey
             //userDetailsService = ref('userDetailsService')
         }
-        /*
-        openIDAuthProvider(OpenIDAuthenticationProvider) {
-            userDetailsService = ref('userDetailsService')
+
+        acsRequestFilter(AcsRequestFilter){
+
         }
-        */
-
-        /*
-        openIDNonceVerifier(InMemoryNonceVerifier, conf.openid.nonceMaxSeconds) // 300 seconds
-        */
-
-        /*
-        openIDConsumerManager(ConsumerManager) {
-            nonceVerifier = openIDNonceVerifier
-        }
-        */
-
-
 
         acsFilter(AcsFilter) {
             //claimedIdentityFieldName = conf.openid.claimedIdentityFieldName // openid_identifier
