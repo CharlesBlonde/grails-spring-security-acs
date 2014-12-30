@@ -43,7 +43,9 @@ grails.project.dependency.resolution = {
         compile 'org.springframework.security:spring-security-jwt:1.0.1.RELEASE'
         compile 'com.google.guava:guava:17.0'
         compile 'commons-codec:commons-codec:1.9'
-        compile 'net.sf.ehcache:ehcache:2.9.0'
+        build('net.sf.ehcache:ehcache:2.9.0'){
+            export = false
+        }
         build ('org.kuali.maven.wagons:maven-s3-wagon:1.2.1') {
             export = false
             exclude 'slf4j-log4j12'
