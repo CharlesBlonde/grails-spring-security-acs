@@ -38,17 +38,14 @@ class AcsFilter extends AbstractAuthenticationProcessingFilter {
 
     public AcsFilter() {
         super("/j_spring_openid_security_check");
-        System.out.println("constructor without argument");
     }
 
     protected AcsFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
-        System.out.println("constructor");
     }
 
     protected AcsFilter(RequestMatcher requiresAuthenticationRequestMatcher) {
         super(requiresAuthenticationRequestMatcher);
-        System.out.println("constructor");
     }
 
     @Override

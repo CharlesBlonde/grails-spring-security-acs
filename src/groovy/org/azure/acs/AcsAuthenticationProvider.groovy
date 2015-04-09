@@ -2,6 +2,7 @@ package org.azure.acs
 
 import grails.plugin.springsecurity.userdetails.GrailsUserDetailsService
 import groovy.util.logging.Log
+import org.azure.acs.exceptions.ExpiredTokenException
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.AuthenticationProvider
@@ -50,16 +51,16 @@ class AcsAuthenticationProvider implements AuthenticationProvider, InitializingB
             def keyPair = RsaKeyHelper.parseKeyPair(pubKey)
             //will throw an exception if Signature is not valid
             acsToken.jwtToken.verifySignature(new RsaVerifier((RSAPublicKey) keyPair.public))
+            if (acsToken.isExpired()) {
+                throw new ExpiredTokenException("Token expired at ${acsToken.getExpirationDate()} (now: ${new Date()})")
+            }
         }
-
-        //TODO check signature !!!
 
         authentication.authenticated = true
         def user = AppUser.findWhere(username: authentication.getUserName())
         if (!user) {
             log.info("User ${authentication.getUserName()} doesn't exist")
             if (autoCreate) {
-                //TODO use only one transaction !
                 log.info("Creating user ${authentication.getUserName()}")
                 def newUser = grailsApplication.getDomainClass(appUserClassName).newInstance()
                 newUser.username = authentication.getUserName()
@@ -101,8 +102,6 @@ class AcsAuthenticationProvider implements AuthenticationProvider, InitializingB
         authentication.authorities = authentication.principal.getAuthorities()
 
         return authentication;
-        //authentication.authorities = user.roles.collect{ new SimpleGrantedAuthority(it)}
-        //authentication.authorities = [new SimpleGrantedAuthority("ROLE_USER")]
     }
 
     @Override

@@ -56,6 +56,24 @@ class AcsAuthenticationToken extends AbstractAuthenticationToken {
         JwtHelper.decode(token)
     }
 
+    Date getExpirationDate() {
+        long expirationDateSeconds = new JsonSlurper().parseText(JwtHelper.decode(token).claims).exp
+        if (expirationDateSeconds) {
+            return new Date(expirationDateSeconds * 1000)
+        } else {
+            return null
+        }
+    }
+
+    boolean isExpired() {
+        def expirationDate = getExpirationDate()
+        if (expirationDate) {
+            return new Date().after(expirationDate)
+        } else {
+            return false
+        }
+    }
+
     @Override
     Object getPrincipal() {
         return principal

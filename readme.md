@@ -23,7 +23,7 @@ repositories{
 }
 ...
 plugins {
-	compile ':acs-security:0.6-SNAPSHOT'
+	compile ':acs-security:0.8-SNAPSHOT'
 }
 ```
 
