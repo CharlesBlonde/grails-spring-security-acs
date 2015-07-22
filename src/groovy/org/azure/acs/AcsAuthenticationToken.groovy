@@ -42,14 +42,30 @@ class AcsAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     String getFullName() {
+        return getField(Holders.config.grails.plugin.springsecurity.acs.claim.names)
+    }
+
+    String getField(List<String> fieldNames) {
         Jwt jwtToken = getJwtToken()
-        def names = Holders.config.grails.plugin.springsecurity.acs.claim.names
+        //def names = Holders.config.grails.plugin.springsecurity.acs.claim.names
         def jsonToken = new JsonSlurper().parseText(jwtToken.claims)
 
-        String nameClaim = names.find { jsonToken[it] != null }
-        if (nameClaim) return jsonToken[nameClaim]
+        String claim = fieldNames.find {jsonToken[it] != null}
+        if(claim) return jsonToken[claim]
 
         return getUserName()
+    }
+
+    String getFirstName() {
+        return getField(Holders.config.grails.plugin.springsecurity.acs.claim.firstNames)
+    }
+
+    String getLastName() {
+        return getField(Holders.config.grails.plugin.springsecurity.acs.claim.lastNames)
+    }
+
+    String getEmail() {
+        return getField(Holders.config.grails.plugin.springsecurity.acs.claim.emails)
     }
 
     Jwt getJwtToken(){

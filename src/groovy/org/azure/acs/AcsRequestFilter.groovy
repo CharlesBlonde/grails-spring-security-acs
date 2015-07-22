@@ -10,6 +10,7 @@ import javax.servlet.ServletException
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 /**
  * User: charles
@@ -21,14 +22,24 @@ import javax.servlet.http.HttpServletRequest
 class AcsRequestFilter extends GenericFilterBean {
     @Override
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (request instanceof HttpServletRequest) {
+        if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request
+            HttpServletResponse httpServletResponse = (HttpServletResponse) response
             String authorizationHeader = httpServletRequest.getHeader("Authorization")
-            if (!Strings.isNullOrEmpty(authorizationHeader)) {
-                def acsAuthenticationToken = new AcsAuthenticationToken(token: authorizationHeader)
-                SecurityContextHolder.context.setAuthentication(acsAuthenticationToken)
+            try {
+                if (!Strings.isNullOrEmpty(authorizationHeader)) {
+                    JwtHelper.decode(authorizationHeader)
+                    def acsAuthenticationToken = new AcsAuthenticationToken(token: authorizationHeader)
+                    SecurityContextHolder.context.setAuthentication(acsAuthenticationToken)
+                }
+                chain.doFilter(request, response)
+            } catch (Exception e) {
+                logger.error("Unable to decode JWT token:" + e.message)
+                httpServletResponse.setStatus(403)
             }
+
+        } else {
+            chain.doFilter(request, response)
         }
-        chain.doFilter(request, response)
     }
 }

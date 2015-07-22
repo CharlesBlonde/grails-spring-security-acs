@@ -93,6 +93,9 @@ class AcsAuthenticationProvider implements AuthenticationProvider, InitializingB
             AppUser.withTransaction {
                 user = AppUser.findWhere(username: authentication.getUserName())
                 user.fullName = authentication.getFullName()
+                user.firstName = authentication.getFirstName()
+                user.lastName = authentication.getLastName()
+                user.email = authentication.getEmail()
                 user.merge()
                 user.save(flush: true)
             }

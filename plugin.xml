@@ -1,4 +1,4 @@
-<plugin name='acs-security' version='0.8-SNAPSHOT' grailsVersion='2.3 &gt; *'>
+<plugin name='acs-security' version='0.11.1' grailsVersion='2.3 &gt; *'>
   <author>Charles Blonde</author>
   <authorEmail>charles.blonde@gmail.com</authorEmail>
   <title>Acs Security Plugin</title>

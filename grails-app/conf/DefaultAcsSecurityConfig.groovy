@@ -11,7 +11,9 @@ security {
                     "upn",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]
             names = ["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
-
+            firstNames = ["givenname"]
+            lastNames = ["surname"]
+            emails = ["emailaddress"]
         }
         verifySignature = true
         pubKey = ""

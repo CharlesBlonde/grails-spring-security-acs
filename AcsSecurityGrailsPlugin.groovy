@@ -6,7 +6,7 @@ import org.azure.acs.AcsRequestFilter
 
 class AcsSecurityGrailsPlugin {
     // the plugin version
-    def version = "0.8-SNAPSHOT"
+    def version = "0.11.1"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
